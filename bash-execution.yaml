@@ -1,0 +1,16 @@
+---
+- name: Execute script remotely
+  hosts: remote_servers
+  gather_facts: no
+  become: yes
+  become_user: root
+  connection: ssh
+  tasks:
+    - name: Make the script executable
+      ansible.builtin.command: "chmod +x PATH-TO-SCRIPTS/SCRIPT.sh"
+    - name: Execute script as superuser
+      ansible.builtin.shell:
+        cmd: |
+          export PATH="PATH-TO-NODE:$PATH"
+          cd PATH-TO-SCRIPTS/
+          ./SCRIPT.sh < input.txt

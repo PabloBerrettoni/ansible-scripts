@@ -1,0 +1,8 @@
+---
+- name: Copy files using FTP
+  hosts: localhost
+  tasks:
+    - name: Upload folder
+      ansible.builtin.shell: "ncftpput -R -u FTPUSER -p FTPPASS FTPHOST /PATH-TO-SERVER ./PATH-TO-UPLOAD"
+      args:
+        warn: false
